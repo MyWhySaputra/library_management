@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package author;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "proto/author;authorpb";
+
+service AuthorService {
+    rpc GetAuthor(GetAuthorRequest) returns (GetAuthorResponse);
+    rpc ListAuthors(google.protobuf.Empty) returns (ListAuthorsResponse);
+    rpc CreateAuthor(CreateAuthorRequest) returns (CreateAuthorResponse);
+    rpc UpdateAuthor(UpdateAuthorRequest) returns (UpdateAuthorResponse);
+    rpc DeleteAuthor(DeleteAuthorRequest) returns (DeleteAuthorResponse);
+}
+
+message Author {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+}
+
+message GetAuthorRequest {
+    int64 id = 1;
+}
+
+message GetAuthorResponse {
+    Author author = 1;
+}
+
+message ListAuthorsResponse {
+    repeated Author authors = 1;
+}
+
+message CreateAuthorRequest {
+    string first_name = 1;
+    string last_name = 2;
+    string bio = 3;
+}
+
+message CreateAuthorResponse {
+    Author author = 1;
+}
+
+message UpdateAuthorRequest {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+}
+
+message UpdateAuthorResponse {
+    Author author = 1;
+}
+
+message DeleteAuthorRequest {
+    int64 id = 1;
+}
+
+message DeleteAuthorResponse {
+    Author author = 1;
+}
